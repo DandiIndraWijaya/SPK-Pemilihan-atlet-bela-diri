@@ -11,7 +11,7 @@ while($row=$id_alternatif->fetchArray(SQLITE3_ASSOC)){
 }
 
 $delete_tab_topsis = $db->query("DELETE FROM tab_topsis WHERE id_alternatif = '$id'");
-$delete_alternatif = $db->query("DELETE FROM tab_alternatif WHERE id_alternatif = '$nama'");
+$delete_alternatif = $db->query("DELETE FROM tab_alternatif WHERE nama_alternatif = '$nama'");
 
 
 header('Location: index.php');

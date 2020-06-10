@@ -28,10 +28,13 @@ if ($tampil) {
       $nilai_kuadrat[$row['nama_kriteria']]+=pow($row['nilai'],2);
       $kriterias[]=$row['nama_kriteria'];
     }
+if(!empty($kriterias)){
+    $kriteria     =array_unique($kriterias);
+    $jml_kriteria =count($kriteria);
+}
+
   }
 
-  $kriteria     =array_unique($kriterias);
-$jml_kriteria =count($kriteria);
 ?>
 
 <!DOCTYPE html>
@@ -238,7 +241,11 @@ $jml_kriteria =count($kriteria);
         </div>
         <br>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-        <table class="table table-striped table-bordered table-hover">
+
+        <?php
+        if(!empty($kriterias)){
+        ?>
+            <table class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
                     <th rowspan='3'>No</th>
@@ -279,6 +286,10 @@ $jml_kriteria =count($kriteria);
                   ?>
                 </tbody>
               </table>
+        <?php
+        }
+        ?>
+        
         </div> <!--container-->
 
 
