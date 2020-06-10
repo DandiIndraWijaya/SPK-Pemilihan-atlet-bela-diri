@@ -190,6 +190,7 @@ $jml_kriteria =count($kriteria);
                     }
 
                     $max = $V[0];
+                    $nama_max = $nama_alter[0];
                     for($i = 1 ; $i < count($V) ; $i++){
                         if($max < $V[$i]){
                             $max = $V[$i];
@@ -199,7 +200,7 @@ $jml_kriteria =count($kriteria);
                   ?>
                   <div>
                       <center>
-                          <h3>Hasilnya adalah alternatif : <?=   $nama_max?></h3>
+                          <h3>Hasilnya adalah alternatif : <?=$nama_max ?></h3>
                           <h3>dengan nilai preferensi : <?= $max ?></h3>
                       </center>
                   </div>

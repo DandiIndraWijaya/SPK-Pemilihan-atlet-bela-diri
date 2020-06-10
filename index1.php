@@ -12,25 +12,33 @@ FROM
   JOIN
     tab_kriteria c USING(id_kriteria)";
 $tampil = $db->query($sql);
-if ($tampil) {
-    while($row=$tampil->fetchArray(SQLITE3_ASSOC)){
-      if(!isset($data[$row['nama_alternatif']])){
-        $data[$row['nama_alternatif']]=array();
-      }
-      if(!isset($data[$row['nama_alternatif']][$row['nama_kriteria']])){
-        $data[$row['nama_alternatif']][$row['nama_kriteria']]=array();
-      }
-      if(!isset($nilai_kuadrat[$row['nama_kriteria']])){
-        $nilai_kuadrat[$row['nama_kriteria']]=0;
-      }
-      $bobot[$row['nama_kriteria']]=$row['bobot']/100;
-      $data[$row['nama_alternatif']][$row['nama_kriteria']]=$row['nilai'];
-      $nilai_kuadrat[$row['nama_kriteria']]+=pow($row['nilai'],2);
-      $kriterias[]=$row['nama_kriteria'];
-    }
-  }
 
-  $kriteria     =array_unique($kriterias);
+
+$data      =array();
+$kriterias =array();
+$bobot     =array();
+$nilai_kuadrat =array();
+
+
+if ($tampil) {
+  while($row=$tampil->fetchArray(SQLITE3_ASSOC)){
+    if(!isset($data[$row['nama_alternatif']])){
+      $data[$row['nama_alternatif']]=array();
+    }
+    if(!isset($data[$row['nama_alternatif']][$row['nama_kriteria']])){
+      $data[$row['nama_alternatif']][$row['nama_kriteria']]=array();
+    }
+    if(!isset($nilai_kuadrat[$row['nama_kriteria']])){
+      $nilai_kuadrat[$row['nama_kriteria']]=0;
+    }
+    $bobot[$row['nama_kriteria']]=$row['bobot']/100;
+    $data[$row['nama_alternatif']][$row['nama_kriteria']]=$row['nilai'];
+    $nilai_kuadrat[$row['nama_kriteria']]+=pow($row['nilai'],2);
+    $kriterias[]=$row['nama_kriteria'];
+  }
+}
+
+$kriteria     =array_unique($kriterias);
 $jml_kriteria =count($kriteria);
 ?>
 
@@ -238,47 +246,17 @@ $jml_kriteria =count($kriteria);
         </div>
         <br>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-        <table class="table table-striped table-bordered table-hover">
+            <table class="table">
                 <thead>
-                  <tr>
-                    <th rowspan='3'>No</th>
-                    <th rowspan='3'>Alternatif</th>
-                    <th rowspan='3'>Nama</th>
-                    <th colspan='<?php echo $jml_kriteria;?>'>Kriteria</th>
-                    <th rowspan='3'>Aksi</th>
-                  </tr>
-                  <tr>
-                    <?php
-                    foreach($kriteria as $k)
-                      echo "<th>$k</th>\n";
-                    ?>
-                  </tr>
-                  <tr>
-                    <?php
-                    for($n=1;$n<=$jml_kriteria;$n++)
-                      echo "<th>K$n</th>";
-                    ?>
-                  </tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Jurusan</th>
+                        <th>Jumlah Wisudawan</th>
+                        <th>Jumlah Prestasi</th>
+                        <th>Akreditasi</th>
+                    </tr>
                 </thead>
-                <tbody>
-                  <?php
-                  $i=0;
-                  foreach($data as $nama=>$krit){
-                    echo "<tr>
-                      <td>".(++$i)."</td>
-                      <th>A$i</th>
-                      <td>$nama</td>";
-                    foreach($kriteria as $k){
-                      echo "<td align='center'>$krit[$k]</td>";
-                    }
-                ?>
-                    <th><a href="http://localhost/topsis/delete_data.php?nama=<?= $nama ?>"><button>Hapus</button></a></th>
-                </tr>
-                <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
+            </table>
         </div> <!--container-->
 
 
