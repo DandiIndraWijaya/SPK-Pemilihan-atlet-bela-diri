@@ -1,0 +1,5 @@
+body{font-family: verdana; font-size: 12px}
+td{font-family: verdana; text-align: center}
+a{font-color: red; text-decoration: none}
+a:hover{background-color: yellow; font-weight: bold}
+a:hover.green{background-color: green; color: yellow}
