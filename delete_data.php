@@ -1,7 +1,7 @@
 <?php
 include 'koneksi_database.php';
 
-$nama = $_GET['nama'];
+$nama = $_POST['nama'];
 
 $db = new MyDB();
 $id_alternatif = $db->query("SELECT id_alternatif FROM tab_alternatif WHERE nama_alternatif = '$nama'");

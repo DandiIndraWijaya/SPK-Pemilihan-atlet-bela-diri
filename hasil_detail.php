@@ -450,7 +450,7 @@ $jml_kriteria =count($kriteria);
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <em>Copyright &copy; Alan Saputra Lengkoan - 2017</em>
+             
             </div>
           </div>
         </div>

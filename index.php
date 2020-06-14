@@ -1,7 +1,6 @@
 <?php
 //koneksi
 include 'koneksi_database.php';
-session_start();
 
 $db = new MyDB();
 $sql = "SELECT b.nama_alternatif,c.nama_kriteria,a.nilai,c.bobot
@@ -82,7 +81,7 @@ if(!empty($kriterias)){
     </nav>
 
     <!--tabel-tabel-->
-    <center><h2>Metode Topsis Jurusan UNNES Terbaik</h2></center>
+    <center><h2>Metode Topsis Pemilihan Kontingen Olahraga Bela Diri</h2></center>
         <hr>
         <div class="row">
             <div class="col-4 col-sm-4 col-md-4 col-lg-4">
@@ -91,38 +90,38 @@ if(!empty($kriterias)){
                     <center><h4>Input Data</h4></center>
                     <form action="input_data.php" method="post">
                         <div class="input-fields">
-                            <label for="" class="label">Tulis nama jurusan</label>
-                            <input type="text" name="jurusan" class="input" required>
+                            <label for="" class="label">Tulis Nama Atlet</label>
+                            <input type="text" name="nama" class="input" required>
                         </div>
                         <div class="input-fields">
-                            <label for="" class="label">Jumlah Wisudawan</label>
-                            <select name="wisuda" class="input">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                            <label for="" class="label">Kecepatan Pukulan (input angka)</label>
+                            <input type="text" name="kecpukul" class="input" required>
                         </div>
                         <div class="input-fields">
-                            <label for="" class="label">Prestasi</label>
-                            <select name="prestasi" class="input">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                            <label for="" class="label">Kakuatan Pukulan (input angka)</label>
+                            <input type="text" name="kekpukul" class="input" required>
                         </div>
                         <div class="input-fields">
-                            <label for="" class="label">Pelanggaran</label>
-                            <select name="pelanggaran" class="input">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
+                            <label for="" class="label">Kecepatan Tendangan (input angka)</label>
+                            <input type="text" name="kectendang" class="input" required>
                         </div>
                         <div class="input-fields">
-                            <input type="submit" value="Simpan"> 
-                        </div>   
+                            <label for="" class="label">Kekuatan Tendangan (input angka)</label>
+                            <input type="text" name="kektendang" class="input" required>
+                        </div>
+                        <div class="input-fields">
+                            <label for="" class="label">Tes Psikologi (input angka)</label>
+                            <input type="text" name="psikolog" class="input" required>
+                        </div>
+                        <div class="input-fields">
+                            <label for="" class="label">Tes Daya Tahan (input angka)</label>
+                            <input type="text" name="daya" class="input" placeholder="contoh : 15.30 (brarti lima belas menit tiga puluh detik)" required>
+                        </div> 
+                        <div class="input-fields">
+                            <label for="" class="label">Tes Kelincahan (input angka)</label>
+                            <input type="text" name="kelincahan" class="input"  required>
+                        </div> 
+                        <input class="input" type="submit" value="Simpan">
                     </form>
                 </div>
             </div>
@@ -131,109 +130,62 @@ if(!empty($kriterias)){
                 <br>
                     <center><h4>Keterangan</h4></center>
                     <div class="row">
-                        <div class="col-4  col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-6  col-sm-6 col-md-6 col-lg-6">
                             <div class="cardcss">
-                            <center><h5>Wisudawan</h5></center>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Jumlah
-                                        </th>
-                                        <th>
-                                            Nilai
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>10 < </td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 - 20</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20 - 30</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>30 ></td>
-                                        <td>4</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <center><h3>Daya Tahan</h3></center>
+                            <hr>
+                            <p style="margin: 10px; text-align: justify;">
+                                 Daya Tahan, adalah kemampuan seseorang untuk melakukan tugasnya tanpa kelelahan yang berlebihan. 
+                                 <br>
+                                 <strong>Biasanya tes ini dilakukan dengan cara berlari dengan jarak 2,4 km. Jadi, Semakin singkat waktu yang diraih maka semakin baik. </strong> 
+                            </p>
                             </div>
                            
                         </div>
-                        <div class="col-4  col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-6  col-sm-6 col-md-6 col-lg-6">
                             <div class="cardcss">
-                            <center><h5>Prestasi</h5></center>
-                            <table class="table">
-                                <thead>
+                            <center><h3>Bobot</h3></center>
+                            <hr>
+                            <p>
+                             <strong>Jika di jumlahkan nilai bobot harus 100%.</strong> 
+                            </p>
+                            <?php
+                                $db = new MyDB();
+                                $sql = "SELECT * FROM tab_kriteria";
+                                $tampil = $db->query($sql);
+                                $sql2 = "SELECT sum(bobot) as jumlah FROM tab_kriteria";
+                                $rows = $db->query($sql2);
+                                $row = $rows->fetchArray();
+                                $jumlah = $row['jumlah'];
+                            ?>
+                                <table class="table">
+                                  <thead>
                                     <tr>
-                                        <th>
-                                            Jumlah
-                                        </th>
-                                        <th>
-                                            Nilai
-                                        </th>
+                                      <td>Kriteria</td>
+                                      <td>Bobot</td>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    
+                                  </thead>
+                                  <tbody>
+                                    
+                              <?php
+                               while($row=$tampil->fetchArray(SQLITE3_ASSOC)){
+                              ?>
                                     <tr>
-                                        <td>10 < </td>
-                                        <td>1</td>
+                                      <td><?=  $row['nama_kriteria'] ?></td>
+                                      <td><?=  $row['bobot'] . "%" ?></td>
                                     </tr>
-                                    <tr>
-                                        <td>10 - 20</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20 - 30</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>30 ></td>
-                                        <td>4</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <?php
+                                }
+                            ?>
+                            <tr>
+                                <td><strong>Jumlah</strong></td>
+                                <td><strong><?=  $jumlah . "%" ?></strong></td>
+                            </tr>
+                                  </tbody>
+                                </table>
+                                <a href="ubah_bobot.php" ><button class="input">Ubah</button></a>
                             </div>
-                        
-                        </div>
-                        <div class="col-4  col-sm-4 col-md-4 col-lg-4">
-                            <div class="cardcss">
-                            <center><h5>Pelanggaran</h5></center>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Jumlah
-                                        </th>
-                                        <th>
-                                            Nilai
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>20 > </td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 -20</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10 <</td>
-                                        <td>3</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                        
                         </div>
                     </div>
                 </div>
@@ -279,7 +231,10 @@ if(!empty($kriterias)){
                       echo "<td align='center'>$krit[$k]</td>";
                     }
                 ?>
-                    <th><a href="http://localhost/topsis/delete_data.php?nama=<?= $nama ?>"><button>Hapus</button></a></th>
+                  <form action="delete_data.php" method="post">
+                    <input type="text" name="nama" value="<?= $nama ?>" hidden>
+                    <th><input type="submit" value="Hapus"></th>
+                  </form>
                 </tr>
                 <?php
                   }
